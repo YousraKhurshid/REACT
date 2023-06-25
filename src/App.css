@@ -1,0 +1,18 @@
+#logo {
+    display: block; /* show the text */
+  }
+
+  #logopic {
+    display: none; /* Hide the picture */
+  }
+
+@media screen and (max-width: 767px) {
+    /* Media query for screen widths up to 767 pixels */
+    #logo {
+      display: none; /* Hide the text */
+    }
+  
+    #logopic {
+      display: block; /* Show the picture */
+    }
+  }
