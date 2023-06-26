@@ -6,7 +6,7 @@ export default function CategoriesSection() {
 
 
 useEffect(()=>{
-  axios.get('https://world.openfoodfacts.org/api/v0/product/737628064502.json').then( json=> console.log(json.data))
+  axios.get('https://api.storerestapi.com/categories').then(json=> console.log(json.data))
 
 },[])
 
