@@ -1,17 +1,20 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 export default function CategoriesSection() {
 
+const [categories,setCategories] = useState([])
+
 
 useEffect(()=>{
-  axios.get('https://api.storerestapi.com/categories').then(json=> console.log(json.data))
+  axios.get('https://dummyjson.com/products/categories').then(json=> setCategories(json.data))
 
 },[])
 
   return (
-    <div className="container">
+<div className="container">
    <div className="my-5 text-center">
    <h1>
    Categories
@@ -20,21 +23,21 @@ useEffect(()=>{
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur eum saepe ipsum quo nam, expedita facere est alias incidunt fuga mollitia cupiditate rem id quos aperiam quisquam laboriosam deleniti hic.
     </p>
    </div>
-   <div className="row">
-    <div className="col-md-4">
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-      </Card.Body>
-    </Card>
-
-    </div>
-   </div>
-    </div>
+  <div className="row">
+     {
+  categories.map((val, key)=>     
+  <div className="col-md-4 my-3" key={key}>
+<Link className='text-decoration-none' to={`/products/category/${val}`}>
+  <Card>
+    <Card.Body>
+      <Card.Title>{key+1} - {val.toUpperCase().replace('-', ' ')}</Card.Title>
+    </Card.Body>
+  </Card>
+  </Link>
+  </div>
+  )
+ }
+  </div>
+</div>
   )
 }

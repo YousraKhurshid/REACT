@@ -6,6 +6,19 @@
     display: none; /* Hide the picture */
   }
 
+.img-cover {
+
+  object-fit: cover;
+}
+.img-fit {
+
+  object-fit: fit;
+}
+.img-contain {
+
+  object-fit: contain;
+}
+
 @media screen and (max-width: 767px) {
     /* Media query for screen widths up to 767 pixels */
     #logo {
@@ -13,6 +26,6 @@
     }
   
     #logopic {
-      display: block; /* Show the picture */
+      display: block;
     }
   }

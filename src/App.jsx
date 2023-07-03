@@ -12,6 +12,8 @@ import Page404 from './pages/Page404'
 import NavigationBar from './Components/NavigationBar'
 import './App.css';
 import FooterSection from './Components/FooterSection'
+import CategoryPage from './pages/CategoryPage';
+import ProductsPage from './pages/ProductsPage';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:productID" element={<ProductsPage />} />
+        <Route path="/products/category/:categoryName" element={<CategoryPage />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
       )
