@@ -23,7 +23,7 @@ export default function ProductsPage() {
        review : review,
        rating : ratingstar
        }
-       console.log(payload)
+       console.log(payload) 
        Swal.fire({
         title: 'Successfully Submitted!',
         text: 'Thanks for reviewing our product',
@@ -37,6 +37,21 @@ export default function ProductsPage() {
   
       }
 
+      const addtoCart = () => {
+
+        const payload = {
+          ...product,
+          productQuantity,
+          totalPrice : product.price * productQuantity
+        }
+        console.log(payload)
+        Swal.fire({
+          title: 'Added to Cart',
+          text: 'Check your Cart for Check Out',
+          icon: 'success',
+          confirmButtonText: 'Continue Shopping'
+         })
+      }
  useEffect(()=>{
     axios.get(`https://dummyjson.com/products/${productID}`).then(json=> setProduct(json.data))
 
@@ -56,12 +71,16 @@ export default function ProductsPage() {
             />
             </div>
 
-            <button className="btn btn-dark mx-3">-</button>{productQuantity}
-            <button className="btn btn-dark mx-3">+</button>
+            
         </div>
-
-
-        <button className='btn btn-dark'>Add to Cart</button>
+        <div className="text-center my-3">
+        <button className="btn btn-dark mx-3" disabled={productQuantity > 1 ? false : true} onClick={() => setproductQuantity(productQuantity - 1)}>-</button>
+            {productQuantity}
+            <button className="btn btn-dark mx-3" onClick={() => setproductQuantity(productQuantity + 1)}>+</button>
+        </div>
+        <div className='text-center my-3'>
+        <button className='btn btn-dark' onClick={addtoCart}> Add to Cart </button>
+        </div>
         <div className="row">
           <div className="col-md-6">
           {
