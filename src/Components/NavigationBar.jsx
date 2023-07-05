@@ -1,15 +1,14 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 
 function NavigationBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Link id='logo' className = 'nav-link' to="/">Accerories & Fashion Dame</Link>
-        <Link id='logopic' className = 'nav-link' to="/"> <img className="picture" src="your-image-url.jpg" alt="Your picture" /> </Link>
+      <Container className='navbar'>
+        <Link id='logo' style={{ fontFamily: 'PT serif', fontWeight: 'bold', fontSize : '25px' }} className = 'nav-link' to="/">Accerories & Fashion Dame</Link>
+        <Link id='logopic' className = 'nav-link border border-light rounded-circle img-fluid' to="/"> <img style={{width:'7vw', height:'15%'}} className="picture rounded-circle" src="src\images\Monogram.jpg" alt="Your picture" /> </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

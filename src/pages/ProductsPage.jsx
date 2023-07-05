@@ -45,6 +45,7 @@ export default function ProductsPage() {
           totalPrice : product.price * productQuantity
         }
         console.log(payload)
+        
         Swal.fire({
           title: 'Added to Cart',
           text: 'Check your Cart for Check Out',

@@ -16,7 +16,9 @@ export default function CategoryPage() {
     }, [categoryName])
   return (
     <div>
+      {/* <h1>
       CategoryPage-{categoryName}
+      </h1> */}
       <div className="container">
         <div className="my-5 text-center">
             <h1>
@@ -27,10 +29,10 @@ export default function CategoryPage() {
         <div className="row">
            {
             products.map((val, key) => 
-            <div className="col-md-6" key={key} >
+            <div className="col-md-6 my-3" key={key} >
         <Link className='text-decoration-none' to={`/products/${val.id}`} >
         <Card>
-      <Card.Img variant="top" src={val.thumbnail}  />
+      <Card.Img variant="top" style={{width:'50vw', height:'80vh'}} className='img-fluid'src={val.thumbnail}  />
       <Card.Body>
         <Card.Title>{val.title} - {val.price}$ </Card.Title>
         <Card.Text>{val.description}

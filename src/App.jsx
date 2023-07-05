@@ -1,55 +1,61 @@
-import React, { useState } from 'react'
-import {
-  Route,
-  Routes,
-  Navigate
-} from "react-router-dom";
-import Home from './pages/Home'
-import Products from './pages/Products'
-import Signup from './pages/Signup'
-import Login from './pages/Login.JSX'
-import Page404 from './pages/Page404'
-import NavigationBar from './Components/NavigationBar'
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Page404 from './pages/Page404';
+import NavigationBar from './Components/NavigationBar';
 import './App.css';
-import FooterSection from './Components/FooterSection'
+import FooterSection from './Components/FooterSection';
 import CategoryPage from './pages/CategoryPage';
 import ProductsPage from './pages/ProductsPage';
+import Spinner from 'react-bootstrap/Spinner';
+import Container from 'react-bootstrap/Container';
 
 function App() {
+  const [user, setUser] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [user, setuser] = useState(true)
+  useEffect(() => {
+    // Simulating an API call delay
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <>
-    <NavigationBar /> 
-    {
-      user
-      ?
-      (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:productID" element={<ProductsPage />} />
-        <Route path="/products/category/:categoryName" element={<CategoryPage />} />
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-      )
-      : 
-      (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<Navigate to="/login" replace={true} />} />
-      </Routes>
-      )
-
-    }
-
-    <FooterSection/>
-          
+      <NavigationBar />
+      {isLoading ? (
+        <Container className="d-flex justify-content-center align-items-center vh-100">
+          <Spinner animation="border" role="status">
+            <span className="sr-only"></span>
+          </Spinner>
+        </Container>
+      ) : (
+        <div style={{ fontFamily: 'Amazon Ember, Arial, sans-serif', fontWeight: 'bold', fontStyle: 'italic' }}>
+          {user ? (
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:productID" element={<ProductsPage />} />
+              <Route path="/products/category/:categoryName" element={<CategoryPage />} />
+              <Route path="*" element={<Page404 />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="*" element={<Navigate to="/login" replace={true} />} />
+            </Routes>
+          )}
+          <FooterSection />
+        </div>
+      )}
     </>
-    
-      )
+  );
 }
 
-export default App
+export default App;
