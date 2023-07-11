@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import ReactStars from 'react-stars'
@@ -7,6 +7,27 @@ import ImageSection from '../Components/ImageSection'
 
 
 export default function ProductsPage() {
+
+  
+  const initialData= {
+    counter: 1,
+    username : ""
+
+  }
+  const myCallback = (state,action) => {
+    switch (action.type) {
+      case "INCREMENT_COUNTER":
+            return {...state, counter : state.counter++ }
+      case "DECREMENT_COUNTER":
+            return {...state, counter : state.counter-- }
+      case "SET_USER":
+            return{...state, username : action.payload.username}
+        default:
+          return state;
+
+    }
+  }
+const[state,dispatch] = useReducer(myCallback,initialData)
        
      const {productID} = useParams()
      const [product, setProduct] = useState({})
@@ -74,10 +95,43 @@ export default function ProductsPage() {
 
             
         </div>
-        <div className="text-center my-3">
+        {/* <div className="text-center my-3">
         <button className="btn btn-dark mx-3" disabled={productQuantity > 1 ? false : true} onClick={() => setproductQuantity(productQuantity - 1)}>-</button>
             {productQuantity}
             <button className="btn btn-dark mx-3" onClick={() => setproductQuantity(productQuantity + 1)}>+</button>
+        </div> */}
+        <div className="text-center my-3">
+        <button className="btn btn-dark mx-3" disabled={state.counter > 1 ? false : true} onClick={ 
+          () => dispatch (
+            {
+              type : "DECREMENT_COUNTER"
+
+          }
+          )
+        }>-</button>
+            {/* {productQuantity} */}
+            {state.counter}
+            <button className="btn btn-dark mx-3" onClick={ 
+          () => dispatch (
+            {
+              type : "INCREMENT_COUNTER"
+
+          }
+          )
+        }>+</button>
+            <div>
+              <input type='text' value={state.username} name= "username"
+               onChange={(e) => dispatch({
+                type : 'SET_USER',
+                payload : { 
+                  username : e.target.value
+                }
+              })}
+              />
+             
+              {state.username}
+            </div>
+
         </div>
         <div className='text-center my-3'>
         <button className='btn btn-dark' onClick={addtoCart}> Add to Cart </button>

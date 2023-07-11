@@ -21,9 +21,11 @@ return (
         <Form>
         <Row>
         <Col>
+        <Form.Label>Name</Form.Label>
           <Form.Control placeholder="First name" />
         </Col>
         <Col>
+        <Form.Label>Last Name</Form.Label>
           <Form.Control placeholder="Last name" />
         </Col>
       </Row>

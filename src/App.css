@@ -9,12 +9,12 @@
   border-radius: 4px;
   padding: 16px;
   background-color: #ffffff; */
-background-color: #fff;
-border-radius: 15px;
+    background-color: #fff;
+border-radius: 3%;
 box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
             15px 15px 15px rgba(66, 65, 41, 0.664),
-          /* inset -5px -5px 5px rgba(255, 255, 255, 0.2),
-           inset 5px 5px 5px rgba(66, 65, 41, 0.144); */
+              
+           
 }
 
 
