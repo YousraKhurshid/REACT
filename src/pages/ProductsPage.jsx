@@ -11,7 +11,7 @@ export default function ProductsPage() {
   
   const initialData= {
     counter: 1,
-    username : ""
+    username : "" 
 
   }
   const myCallback = (state,action) => {
@@ -21,7 +21,7 @@ export default function ProductsPage() {
       case "DECREMENT_COUNTER":
             return {...state, counter : state.counter-- }
       case "SET_USER":
-            return{...state, username : action.payload.username}
+            return{...state, [action.payload.name] : action.payload.value}
         default:
           return state;
 
@@ -124,7 +124,8 @@ const[state,dispatch] = useReducer(myCallback,initialData)
                onChange={(e) => dispatch({
                 type : 'SET_USER',
                 payload : { 
-                  username : e.target.value
+                  "name" : e.target.name,
+                  "value" : e.target.value
                 }
               })}
               />

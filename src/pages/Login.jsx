@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { Card } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
 
 export default function Login() {
+  
+  const counterCallback = (state, action) => {
+    switch (action.type) {
+      case "SET_EMAIL":
+        return {...state, email: action.payload.email }
+
+        default:
+          return state;
+        }
+  
+    }
+  
+    const data = {
+       count: 0, 
+       email: "hhf"
+    }
+    const [state, dispatch] = useReducer(counterCallback, data)
+  
   return (
 
       <>
@@ -23,6 +41,13 @@ export default function Login() {
       className="form-control"
       id="exampleFormControlInput1"
       placeholder="name@example.com"
+      value={state.email}
+      onChange={(e) => dispatch({
+        type: "SET_EMAIL",
+        payload: {
+          email: e.target.value
+        }
+      })}
     />
   </div>
    <div className="mx-5">
